@@ -41,35 +41,4 @@ while (true)
         if (i < (nums.Length / 2) + lichy)
             ints[i] = Int32.Parse(snum[i]);
     }
-    var ivys = GetNumFromArray(vysledek, false);
-}
-BigInteger GetNumFromArray(int[] input, int lichy, bool half)
-{
-    string str = "";
-    foreach (int num in input)
-        str += num.ToString();
-    if (lichy > 0)
-    {
-        for (int i = input.Length - 2; i >= 0; i--)
-        {
-            str += input[i].ToString();
-        }
-    }
-    else
-    {
-        for (int i = input.Length - 1; i >= 0; i--)
-        {
-            str += input[i].ToString();
-        }
-    }
-
-    return BigInteger.Parse(str);
-}
-
-BigInteger GetNumFromArray(int[] input, bool half)
-{
-    string str = "";
-    foreach (int num in input)
-        str += num.ToString();
-    return BigInteger.Parse(str);
 }
