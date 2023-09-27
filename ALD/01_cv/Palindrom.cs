@@ -31,38 +31,46 @@ namespace _01_cv
 
         public static void NextNumberPalindrom()
         {
-            BigInteger num = BigInteger.Parse(Console.ReadLine());
-            if (num == -1) 
+            while (true)
             {
-                return;
-            }
-            num++;
-            string nums = $"{num}";
-            int[] ints = new int[nums.Length];
-            string[] snum = nums.Split();
-            int lichy = nums.Length % 2;
-            int[] vysledek = new int[snum.Length];
-            for (int i = 0; i < nums.Length-1; i++)
-            {
-                vysledek[i] = Int32.Parse(snum[i]);
-                if (i < (nums.Length / 2) + lichy)
+                BigInteger num = BigInteger.Parse(Console.ReadLine());
+                if (num == -1)
                 {
-                    ints[i] = Int32.Parse(snum[i]);
+                    return;
                 }
+                num++;
+                string nums = $"{num}";
+                if (string.IsNullOrEmpty(nums))
+                    return;
+
+                char[] snum = nums.ToCharArray(); //nums.Split("");
+                int lichy = nums.Length % 2;
+                int[] ints = new int[nums.Length / 2 + lichy];
+                int[] vysledek = new int[snum.Length];
+                for (int i = 0; i < snum.Length; i++)
+                {
+                    vysledek[i] = Int32.Parse(snum[i].ToString());
+                    if (i < (nums.Length / 2) + lichy)
+                    {
+                        ints[i] = Int32.Parse(snum[i].ToString());
+                    }
+                }
+                BigInteger palindrom = GetBigInteger(ints, lichy);
+
+                while (palindrom < num)
+                {
+                    BigInteger helpInts = GetBigInteger(ints) + 1;
+                    nums = $"{helpInts}";
+                    snum = nums.ToCharArray();
+                    for (int i = 0; i < ints.Length; i++)
+                    {
+                        ints[i] = Int32.Parse(snum[i].ToString());
+                    }
+                    palindrom = GetBigInteger(ints, lichy);
+                }
+                Console.WriteLine(palindrom);
             }
-            BigInteger palindrom = GetBigInteger(ints, lichy);
             
-            while (palindrom<num)
-            {
-                BigInteger helpInts = GetBigInteger(ints)+1;
-                nums = $"{helpInts}";
-                snum = nums.Split();
-                for (int i = 0; i < snum.Length-1; i++)
-                {
-                    ints[i] = Int32.Parse(snum[i]);
-                }
-                palindrom=GetBigInteger(ints, lichy);
-            }
         }
 
         private static BigInteger GetBigInteger(int[] firstHalf, int modulo2)
