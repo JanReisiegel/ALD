@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -33,7 +34,10 @@ namespace _01_cv
         {
             while (true)
             {
+                Stopwatch sw = new Stopwatch();
+                
                 BigInteger num = BigInteger.Parse(Console.ReadLine());
+                sw.Start();
                 if (num == -1)
                 {
                     return;
@@ -68,7 +72,9 @@ namespace _01_cv
                     }
                     palindrom = GetBigInteger(ints, lichy);
                 }
+                sw.Stop();
                 Console.WriteLine(palindrom);
+                Console.WriteLine(sw.Elapsed);
             }
             
         }
