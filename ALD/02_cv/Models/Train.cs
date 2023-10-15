@@ -103,7 +103,7 @@ namespace _02_cv.Models
 
         public string Pop(int position)
         {
-            if(first == null)
+            if (first == null)
             {
                 return "error";
             }
@@ -112,7 +112,7 @@ namespace _02_cv.Models
                 Wagon wagon = first;
                 for (int i = 1; i <= position; i++)
                 {
-                    if(wagon.next == null)
+                    if (wagon.next == null)
                     {
                         return "error";
                     }
@@ -141,9 +141,9 @@ namespace _02_cv.Models
         {
             try
             {
-                Wagon moved, positioned;
+                Wagon? moved, positioned;
                 moved = first;
-                while(true)
+                while (true)
                 {
                     if (moved == null)
                     {
@@ -151,38 +151,79 @@ namespace _02_cv.Models
                     }
                     if (moved.id.Equals(id))
                     {
-                        if(moved.prev != null)
-                        {
-                            moved.prev.next = moved.next;
-                        }
-                        if(moved.next != null)
-                        {
-                            moved.next.prev = moved.prev;
-                        }
                         break;
                     }
                     moved = moved.next;
                 }
+
                 positioned = first;
-                for (int i = 1;i < position; i++)
+                for (int i = 1; i < position; i++)
                 {
-                    if (positioned.next == null)
+                    if (positioned == null)
                     {
                         return "error";
                     }
                     positioned = positioned.next;
-                    if(i == 1)
+                }
+                
+                Wagon? temp;
+                if(positioned.next == moved)
+                {
+                    temp = positioned;
+                    positioned.next = moved.next;
+                    if(moved.next != null)
                     {
-                        first = positioned;
+                        moved.next.prev = positioned;
+                    }
+                    positioned.prev = moved;
+                    moved.prev = temp.prev;
+                    if(temp.prev != null)
+                    {
+                        temp.prev.next = moved;
+                    }
+                    moved.next = positioned;
+                }
+                else if(moved.next == positioned)
+                {
+                    temp = positioned;
+                    positioned.next = moved;
+                    positioned.prev = moved.prev;
+                    if(moved.prev != null)
+                    {
+                        moved.prev.next = positioned;
+                    }
+                    moved.prev = positioned;
+                    moved.next = temp.next;
+                    if(temp.next != null)
+                    {
+                        temp.next.prev = positioned;
                     }
                 }
-                moved.prev = positioned;
-                moved.next = positioned.next;
-                if(positioned.next != null)
+                else
                 {
-                    positioned.next.prev = moved;
+                    temp = positioned;
+                    positioned.next = moved.next;
+                    if(moved.next!=null)
+                    {
+                        moved.next.prev = positioned;
+                    }
+                    positioned.prev = moved.prev;
+                    if (moved.prev != null)
+                    {
+                        moved.prev.next = positioned;
+                    }
+                    moved.next = temp.next;
+                    if (temp.next != null)
+                    {
+                        temp.next.prev = moved;
+                    }
+                    moved.prev = temp.prev;
+                    if(moved.prev != null)
+                    {
+                        moved.prev.next = moved;
+                    }
                 }
-                positioned.next = moved;
+
                 return "ok";
             }
             catch { return "error"; }
@@ -190,15 +231,15 @@ namespace _02_cv.Models
 
         public string GetTotalWeight()
         {
-            if(first == null)
+            if (first == null)
             {
                 return "empty";
             }
             int totalWeight = 0;
             Wagon wagon = first;
-            while(true)
+            while (true)
             {
-                if(wagon == null)
+                if (wagon == null)
                 {
                     return totalWeight.ToString();
                 }
@@ -209,15 +250,15 @@ namespace _02_cv.Models
 
         public string PrintTrain()
         {
-            if(first == null)
+            if (first == null)
             {
                 return "empty";
             }
             StringBuilder sb = new StringBuilder();
             Wagon wagon = first;
-            while(true)
+            while (true)
             {
-                if(wagon == null)
+                if (wagon == null)
                 {
                     return sb.ToString();
                 }

@@ -61,6 +61,10 @@ while (true)
                 }
                 Console.WriteLine(train.Pop(pos));
             }
+            else if (inputArgs[1].StartsWith("poz"))
+            {
+                Console.WriteLine("error");
+            }
             break;
         case "move":
             Console.WriteLine(train.Move(inputArgs[1], Int32.Parse(inputArgs[2])));
