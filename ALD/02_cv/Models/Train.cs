@@ -82,6 +82,10 @@ namespace _02_cv.Models
                 Wagon wagon = first;
                 while (true)
                 {
+                    if (wagon == null)
+                    {
+                        return "error";
+                    }
                     if (wagon.id.Equals(id))
                     {
                         if (wagon.Equals(first))
