@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Runtime.Versioning;
@@ -25,6 +26,13 @@ namespace _02_cv.Models
             {
                 prev = null;
                 next = null;
+            }
+            public Wagon(Wagon wagon)
+            {
+                id = wagon.id;
+                prev = wagon.prev;
+                next = wagon.next;
+                weight = wagon.weight;
             }
             public override string ToString()
             {
@@ -166,14 +174,18 @@ namespace _02_cv.Models
                     positioned = positioned.next;
                 }
                 
-                Wagon? temp;
+                Wagon temp = new Wagon(positioned); 
                 if(positioned.next == moved)
                 {
-                    temp = positioned;
+                    temp.next = positioned.next;
                     positioned.next = moved.next;
                     if(moved.next != null)
                     {
                         moved.next.prev = positioned;
+                    }
+                    else
+                    {
+                        last = positioned;
                     }
                     positioned.prev = moved;
                     moved.prev = temp.prev;
@@ -181,46 +193,74 @@ namespace _02_cv.Models
                     {
                         temp.prev.next = moved;
                     }
+                    else
+                    {
+                        first = moved;
+                    }
                     moved.next = positioned;
                 }
                 else if(moved.next == positioned)
                 {
-                    temp = positioned;
+                    temp = new Wagon(positioned);
                     positioned.next = moved;
                     positioned.prev = moved.prev;
                     if(moved.prev != null)
                     {
                         moved.prev.next = positioned;
                     }
+                    else
+                    {
+                        first = positioned;
+                    }
                     moved.prev = positioned;
                     moved.next = temp.next;
                     if(temp.next != null)
                     {
-                        temp.next.prev = positioned;
+                        temp.next.prev = moved;
+                    }
+                    else
+                    {
+                        last = moved;
                     }
                 }
                 else
                 {
-                    temp = positioned;
+                    temp = new Wagon(positioned);
                     positioned.next = moved.next;
                     if(moved.next!=null)
                     {
                         moved.next.prev = positioned;
+                    }
+                    else
+                    {
+                        last = positioned;
                     }
                     positioned.prev = moved.prev;
                     if (moved.prev != null)
                     {
                         moved.prev.next = positioned;
                     }
+                    else
+                    {
+                        first = positioned;
+                    }
                     moved.next = temp.next;
                     if (temp.next != null)
                     {
                         temp.next.prev = moved;
                     }
+                    else
+                    {
+                        last = moved;
+                    }
                     moved.prev = temp.prev;
                     if(moved.prev != null)
                     {
                         moved.prev.next = moved;
+                    }
+                    else
+                    {
+                        first = moved;
                     }
                 }
 
@@ -260,7 +300,7 @@ namespace _02_cv.Models
             {
                 if (wagon == null)
                 {
-                    return sb.ToString();
+                    return sb.ToString().TrimEnd();
                 }
                 sb.AppendLine(wagon.ToString());
                 wagon = wagon.next;
