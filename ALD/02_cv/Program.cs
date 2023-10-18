@@ -36,6 +36,10 @@ Train train = new Train();
 while (true)
 {
     string input = Console.ReadLine();
+    if (String.IsNullOrEmpty(input))
+    {
+        return;
+    }
     string[] inputArgs = input.Split(' ');
     switch(inputArgs[0])
     {
