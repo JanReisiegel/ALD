@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Runtime.Versioning;
@@ -25,6 +26,13 @@ namespace _02_cv.Models
             {
                 prev = null;
                 next = null;
+            }
+            public Wagon(Wagon wagon)
+            {
+                id = wagon.id;
+                prev = wagon.prev;
+                next = wagon.next;
+                weight = wagon.weight;
             }
             public override string ToString()
             {
@@ -74,10 +82,6 @@ namespace _02_cv.Models
                 Wagon wagon = first;
                 while (true)
                 {
-                    if(wagon == null)
-                    {
-                        return "error";
-                    }
                     if (wagon.id.Equals(id))
                     {
                         if (wagon.Equals(first))
@@ -169,36 +173,19 @@ namespace _02_cv.Models
                     }
                     positioned = positioned.next;
                 }
-                if (positioned == first && moved == last)
-                {
-                    first = moved;
-                    last = positioned;
-                }
-                else if (moved == first && positioned == last)
-                {
-                    last = moved;
-                    first = positioned;
-                }
-                else if (moved == last || positioned == last)
-                {
-                    last = positioned==last?moved:positioned;
-                }
-                else if (positioned == first || moved == first)
-                {
-                    first = moved==first?positioned:moved;
-                }
+                
                 Wagon? temp;
                 if(positioned.next == moved)
                 {
-                    temp = new Wagon();
-                    temp.id = positioned.id;
-                    temp.weight = positioned.weight;
-                    temp.next = positioned.next;
-                    temp.prev= positioned.prev;
+                    temp = positioned;
                     positioned.next = moved.next;
                     if(moved.next != null)
                     {
                         moved.next.prev = positioned;
+                    }
+                    else
+                    {
+                        last = positioned;
                     }
                     positioned.prev = moved;
                     moved.prev = temp.prev;
@@ -206,53 +193,69 @@ namespace _02_cv.Models
                     {
                         temp.prev.next = moved;
                     }
+                    else
+                    {
+                        first = moved;
+                    }
                     moved.next = positioned;
                 }
                 else if(moved.next == positioned)
                 {
-                    temp = new Wagon();
-                    temp.id = positioned.id;
-                    temp.weight = positioned.weight;
-                    temp.next = positioned.next;
-                    temp.prev = positioned.prev;
+                    temp = positioned;
                     positioned.next = moved;
                     if(moved.prev != null)
                     {
                         moved.prev.next = positioned;
                     }
+                    else
+                    {
+                        first = positioned;
+                    }
                     moved.prev = positioned;
                     moved.next = temp.next;
                     if(temp.next != null)
                     {
-                        temp.next.prev = moved;
+                        temp.next.prev = positioned;
                     }
                 }
                 else
                 {
-                    temp = new Wagon();
-                    temp.id = positioned.id;
-                    temp.weight = positioned.weight;
-                    temp.next = positioned.next;
-                    temp.prev = positioned.prev;
+                    temp = positioned;
                     positioned.next = moved.next;
                     if(moved.next!=null)
                     {
                         moved.next.prev = positioned;
+                    }
+                    else
+                    {
+                        last = positioned;
                     }
                     positioned.prev = moved.prev;
                     if (moved.prev != null)
                     {
                         moved.prev.next = positioned;
                     }
+                    else
+                    {
+                        first = positioned;
+                    }
                     moved.next = temp.next;
                     if (temp.next != null)
                     {
                         temp.next.prev = moved;
                     }
+                    else
+                    {
+                        last = moved;
+                    }
                     moved.prev = temp.prev;
                     if(moved.prev != null)
                     {
                         moved.prev.next = moved;
+                    }
+                    else
+                    {
+                        first = moved;
                     }
                 }
 
@@ -292,7 +295,7 @@ namespace _02_cv.Models
             {
                 if (wagon == null)
                 {
-                    return sb.ToString().Trim();
+                    return sb.ToString();
                 }
                 sb.AppendLine(wagon.ToString());
                 wagon = wagon.next;
