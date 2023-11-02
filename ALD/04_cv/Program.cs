@@ -12,7 +12,7 @@ Console.WriteLine($"Počet prvků v poli: {list.Count}");
 Console.WriteLine(sList);
 Console.WriteLine(bs.Counter);*/
 
-List<Student> students = new List<Student>();
+/*List<Student> students = new List<Student>();
 SortStudent sort = new SortStudent();
 students.Add(new Student("M22000180", "Michal", "Pokorný", DateTime.Parse("2002/11/7")));
 students.Add(new Student("M22000101", "Petr", "Konopný", DateTime.Parse("2002/02/6")));
@@ -31,4 +31,18 @@ students.Sort((Student s1, Student s2) =>
 foreach (Student student in students)
 {
     Console.WriteLine(student.ToString());
+}*/
+
+GPS gps = new GPS();
+while (true)
+{
+    string[] input = Console.ReadLine().Split(" ");
+    switch (input[2])
+    {
+        case "nejkratsi":
+            Console.WriteLine(gps.GetNejkratsi(input[0], input[1]));
+            break;
+        default:
+            return;
+    }
 }
