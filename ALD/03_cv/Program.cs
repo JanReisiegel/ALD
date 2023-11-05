@@ -13,12 +13,13 @@ Console.WriteLine("Prvky stromu: " + strom.Print());
 Console.WriteLine("Vyska: " + strom.MaxDepth());
 strom.PrintTree();*/
 
-Tree<int> tree = new Tree<int>();
-string input = Console.ReadLine();
+AVL<int> tree = new AVL<int>();
+string input = "2 8 2 8 6 -1"; //Console.ReadLine();
 foreach (string item in input.Split(" "))
 {
     tree.Add(int.Parse(item));
 }
+tree.PrintTree();
 Console.WriteLine(tree.Preorder());
 Console.WriteLine(tree.Inorder());
 Console.WriteLine(tree.Postorder());
