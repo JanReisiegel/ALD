@@ -14,7 +14,7 @@ Console.WriteLine("Vyska: " + strom.MaxDepth());
 strom.PrintTree();*/
 
 AVL<int> tree = new AVL<int>();
-string input = "2 8 2 8 6 -1"; //Console.ReadLine();
+string input = Console.ReadLine();
 foreach (string item in input.Split(" "))
 {
     tree.Add(int.Parse(item));

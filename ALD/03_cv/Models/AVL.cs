@@ -17,7 +17,7 @@ namespace _03_cv.Models
             public Node(T value)
             {
                 this.value = value;
-                this.height = 0;
+                this.height = 1;
             }
             public int GetBallance()
             {
@@ -25,7 +25,7 @@ namespace _03_cv.Models
             }
             public int GetHeight()
             {
-                if(this == null)
+                if (this == null)
                     return 0;
                 return height;
             }
@@ -37,36 +37,36 @@ namespace _03_cv.Models
 
         public void Add(T value)
         {
-            if(root == null)
+            if (root == null)
             {
                 root = new Node(value);
                 return;
             }
 
-            if(value.CompareTo(root.value) <= 0)
+            if (value.CompareTo(root.value) <= 0)
             {
-                root.left = AddRek(root.left,value);
+                root.left = AddRek(root.left, value);
             }
             else
             {
-                root.right = AddRek(root.right,value);
+                root.right = AddRek(root.right, value);
             }
             UpdateHeight(root);
 
         }
         private Node AddRek(Node node, T value)
         {
-            if(node == null)
+            if (node == null)
             {
                 return new Node(value);
             }
             if (value.CompareTo(node.value) <= 0)
             {
-                node.left = AddRek(node.left,value);
+                node.left = AddRek(node.left, value);
             }
             else
             {
-                node.right = AddRek(node.right,value);
+                node.right = AddRek(node.right, value);
             }
 
             UpdateHeight(node);
@@ -81,8 +81,8 @@ namespace _03_cv.Models
                 return string.Empty;
             }
             string sb = "";
-            sb += "preorder";
-            sb += $"\n{root.ToString()}";
+            sb += "PREORDER";
+            sb += $"\n{root.ToString()},";
             if (root.left != null)
             {
                 sb += $"{PreorderRek(root.left)}";
@@ -97,7 +97,7 @@ namespace _03_cv.Models
         private string PreorderRek(Node node)
         {
             string sb = "";
-            sb += $"\n{node.ToString()}";
+            sb += $"{node.ToString()},";
             if (node.left != null)
             {
                 sb += $"{PreorderRek(node.left)}";
@@ -115,12 +115,12 @@ namespace _03_cv.Models
             {
                 return String.Empty;
             }
-            string sb = "inorder";
+            string sb = "INORDER\n";
             if (root.left != null)
             {
                 sb += $"{InorderRek(root.left)}";
             }
-            sb += $"\n{root.ToString()}";
+            sb += $"{root.ToString()},";
             if (root.right != null)
             {
                 sb += $"{InorderRek(root.right)}";
@@ -135,7 +135,7 @@ namespace _03_cv.Models
             {
                 sb += $"{InorderRek(node.left)}";
             }
-            sb += $"\n{node.ToString()}";
+            sb += $"{node.ToString()},";
             if (node.right != null)
             {
                 sb += $"{InorderRek(node.right)}";
@@ -149,7 +149,7 @@ namespace _03_cv.Models
             {
                 return String.Empty;
             }
-            string sb = "postorder";
+            string sb = "POSTORDER\n";
             if (root.left != null)
             {
                 sb += $"{PostorderRek(root.left)}";
@@ -158,7 +158,7 @@ namespace _03_cv.Models
             {
                 sb += $"{PostorderRek(root.right)}";
             }
-            sb += $"\n{root.ToString()}";
+            sb += $"{root.ToString()},";
             return sb;
         }
 
@@ -173,7 +173,7 @@ namespace _03_cv.Models
             {
                 sb += $"{PostorderRek(node.right)}";
             }
-            sb += $"\n{node.ToString()}";
+            sb += $"{node.ToString()},";
             return sb;
         }
 
@@ -183,31 +183,33 @@ namespace _03_cv.Models
             {
                 return;
             }
-            node.height = Math.Max(node.right == null ? 0: node.right.GetHeight(), node.left == null ? 0 : node.left.GetHeight()) + 1;
+            UpdateHeight(node.left);
+            UpdateHeight(node.right);
+            node.height = Math.Max(node.right == null ? 0 : node.right.GetHeight(), node.left == null ? 0 : node.left.GetHeight()) + 1;
         }
 
-        
+
         private Node BalanceTree(Node node, T value)
         {
-            if(node.GetBallance() > 1)
+            if (node.GetBallance() > 1)
             {
-                if (node.left.GetBallance() >= 1 )
+                if (node.left.GetBallance() >= 1)
                 {
                     return RotateRight(node);
                 }
-                else if(node.left.GetBallance() <= -1 )
+                else if (node.left.GetBallance() <= -1)
                 {
                     node.left = RotateLeft(node.left);
                     return RotateRight(node);
                 }
             }
-            if(node.GetBallance() < -1)
+            if (node.GetBallance() < -1)
             {
-                if(node.right.GetBallance() >= 1)
+                if (node.right.GetBallance() <= -1)
                 {
                     return RotateLeft(node);
                 }
-                else if(node.right.GetBallance() <= -1)
+                else if (node.right.GetBallance() >= 1)
                 {
                     node.right = RotateRight(node.right);
                     return RotateLeft(node);
@@ -215,8 +217,9 @@ namespace _03_cv.Models
             }
             return node;
         }
-        private Node RotateRight(Node node) 
+        private Node RotateRight(Node node)
         {
+
             Node temp = node.left;
             node.left = temp.right;
             temp.right = node;
@@ -227,6 +230,7 @@ namespace _03_cv.Models
 
         private Node RotateLeft(Node node)
         {
+
             Node temp = node.right;
             node.right = temp.left;
             temp.left = node;
@@ -239,12 +243,10 @@ namespace _03_cv.Models
 
 
 
-
         public void PrintTree()
         {
             PrintF(root);
         }
-
         class NodeInfo
         {
             public Node Node;
@@ -343,4 +345,4 @@ namespace _03_cv.Models
             Console.BackgroundColor = color;
         }
     }
-}
+}        
