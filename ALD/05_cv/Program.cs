@@ -1,5 +1,5 @@
 ﻿using _05_cv.Models;
-var words = await WordCount.ReadAll();
+/*var words = await WordCount.ReadAll();
 var wordDictionary = new Dictionary<string, int>();
 words.ToList();
 foreach (var word in words)
@@ -46,4 +46,15 @@ top15Fraze.ForEach(x =>
 {
     var freq = (double)x.Value / words.Length;
     Console.WriteLine($"- {x.Key,-22} {freq,2:P} ({x.Value})");
-});
+});*/
+
+while (true)
+{
+    string a = Console.ReadLine();
+    if (String.IsNullOrEmpty(a))
+    {
+        break;
+    }
+    string b = Console.ReadLine();
+    Console.WriteLine(Anagrams.IsAnagram(a, b));
+}
