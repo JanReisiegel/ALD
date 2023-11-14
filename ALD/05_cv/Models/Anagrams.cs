@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +18,29 @@ namespace _05_cv.Models
             Dictionary<char, int> dictA = GetDictionaryFromList(listA);
             Dictionary<char, int> dictB = GetDictionaryFromList(listB);
             int isAnagram = 0;
-            return "true";
+            if (dictA.Count >= dictB.Count)
+            {
+                foreach (var item in dictA)
+                {
+                    if (!dictB.ContainsKey(item.Key) || item.Value != dictB[item.Key])
+                    {
+                        isAnagram++;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in dictB)
+                {
+                    if (!dictA.ContainsKey(item.Key) || item.Value != dictA[item.Key])
+                    {
+                        isAnagram++;
+                    }
+                }
+            }
+            
+
+            return ((AnagramType)(isAnagram > 2 ? 2 : isAnagram)).GetDisplayName();
         }
 
         private static List<char> ListFromString(string a)
@@ -42,24 +65,22 @@ namespace _05_cv.Models
             dict.OrderByDescending(x => x.Key);
             return dict;
         }
-        private static Anagram IsEqual(int isAnagram, int listCount)
-        {
-            if(Math.Abs(isAnagram - listCount) / 2 >= 1)
-            {
-                return Anagram.NearAnagram;
-            }
-            return (Anagram)Math.Abs(isAnagram - listCount);
-        }
     }
 
-    public enum Anagram
+    public enum AnagramType
     {
         [Display(Name = "ANAGRAMS")]
         Anagram = 0,
         [Display(Name = "NOT ANAGRAMS")]
-        NotAnagram = 1,
+        NotAnagram = 2,
         [Display(Name = "NEAR ANAGRAMS")]
-        NearAnagram = 2
-
+        NearAnagram = 1
+    }
+    public static class AnagramHelper
+    {
+        public static string GetDisplayName(this Enum value)
+        {
+            return value.GetType().GetMember(value.ToString()).FirstOrDefault().GetCustomAttribute<DisplayAttribute>()?.GetName();
+        }
     }
 }
