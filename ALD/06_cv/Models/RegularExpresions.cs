@@ -24,10 +24,18 @@ namespace _06_cv.Models
         private void ParseText()
         {
             string text = Text;//.Replace("\n", String.Empty);
-            string patern = @"<.{3,}?>";
-            text = Regex.Replace(text, patern, String.Empty);
-            patern = @"\n+\W*";
-            text = Regex.Replace(text, patern, "\n");
+            text = text.Replace("&nbsp", "");
+            text = Regex.Replace(text, @" +", String.Empty);
+            text = Regex.Replace(text, @"<.{4,}?>", String.Empty);
+            text = Regex.Replace(text, @"\n+", "\n");
+            text = Regex.Replace(text, @"</?[^r]>", String.Empty);
+            text = Regex.Replace(text, @"\n+", " ");
+            text = Regex.Replace(text, @"</?t[hd]>", "");
+            text = Regex.Replace(text, @"</?tr>","\n");
+            text = Regex.Replace(text, @" {2,}", ";");
+            //text = Regex.Replace(text, @" +", " ");
+            text = Regex.Replace(text, @" ?[,;]+ ?", ";");
+            //text = Regex.Replace(text, @"<.[^(tr)]?>", String.Empty);
             Console.ReadKey();
         }
 
