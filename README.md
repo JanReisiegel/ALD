@@ -19,7 +19,7 @@
 1. Popište princip ShakerSortu a HeapSortu
 1. Popište princip SelectSortu a BubbleSortu
 1. Popište princip InsertSortu a QuickSortu
-1. Popište princip MergeSortu a CombSortu **_pokračovat_**
+1. Popište princip MergeSortu a CombSortu 
 1. Popište princip ShellSortu a CountingSortu
 1. Vyhledávání, oč jde, zákl. pojmy, rozdíl mezi lieárním a binárním vyhledáváním
 1. Binární a interpolační vyhledávání
