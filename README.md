@@ -2,30 +2,30 @@
 
 ## Otázky (okruhy) na zkoušku:
 
-1. Datové typy a jejich rozdělení
-1. Strukturované DT, co víte o polích a řetězcích
-1. ADT - co to je, které znáte, výhody, zákl. operace nad ADT kontejnery
-1. Kritéria pro rozčlenění ADT, typ ukazatel
-1. Popište LIFO, FIFO - vše o co nich víte
-1. Popište Kruhový buffer - princip, vlastnosti,možnost použití atd.
-1. Popište ADT Seznam, rozdíl oproti LIFO (resp. FIFO)
-1. Popište ADT Heap - princip, vlastnosti,možnost použití
-1. Popište ADT Dynamické pole, srovnání, princip, výhody atd.
-1. ADT Množina - co o něm víte
-1. Definice algoritmu, jeho vlastnosti
-1. Co víte o složitosti algoritmu ?
-1. Co víte o rekurzi a backtracingu?
-1. Sorting - co to je, jejich dělení podle typu dat, BogoSort, zajíci a želvy
-1. Popište princip ShakerSortu a HeapSortu
-1. Popište princip SelectSortu a BubbleSortu
-1. Popište princip InsertSortu a QuickSortu
-1. Popište princip MergeSortu a CombSortu 
-1. Popište princip ShellSortu a CountingSortu
-1. Vyhledávání, oč jde, zákl. pojmy, rozdíl mezi lieárním a binárním vyhledáváním
-1. Binární a interpolační vyhledávání
-1. Binární vyhledávací stromy - vlastnosti, metody procházení, vkládání a odstranění prvku
-1. Vyvažování stromů - co to je, proč to je, co je bal a rotace
-1. Hashování - základní terminologie, princip, asociativní a adresní vyhledávání, hašovací funkce + kolize
-1. Zřetězené hashování, otevřené hashování, linear probing, double hashing - principy, výhody/nevýhody atd.
-1. Prohledávání řetězců - terminologie, princip, přirozené prohledávání, KMP, chybová funkce
-1. Prohledávání řetězců - Boyer-Moore, Rabin-Karp - princip, srovnání
+1. [Datové typy a jejich rozdělení](./Teorie/01_DatoveTypy-rozdeleni.md)
+2. [ADT - co to je, které znáte, výhody, zákl. operace nad ADT kontejnery](./Teorie/02_StrukturovaneDT.md)
+3. [Strukturované DT, co víte o polích a řetězcích](./Teorie/03_ADT.md)
+4. [Kritéria pro rozčlenění ADT, typ ukazatel](./Teorie/04_RozcleneniADT.md)
+5. [Popište LIFO, FIFO - vše o co nich víte](./Teorie/05_LIFO-FIFO.md)
+6. [Popište Kruhový buffer - princip, vlastnosti,možnost použití atd.](./Teorie/06_KruhovyBuffer.md)
+7. [Popište ADT Seznam, rozdíl oproti LIFO (resp. FIFO)](./Teorie/07_ADTSeznam.md)
+8. [Popište ADT Heap - princip, vlastnosti,možnost použití](./Teorie/08_ADTHeap.md)
+9. [Popište ADT Dynamické pole, srovnání, princip, výhody atd.](./Teorie/09_ADTDynamickePole.md)
+10. [ADT Množina - co o něm víte](./Teorie/10_ADTMnozina.md)
+11. [Definice algoritmu, jeho vlastnosti](./Teorie/11_Algoritmus.md)
+12. [Co víte o složitosti algoritmu ?](./Teorie/12_SlozitostAlgoritmu.md)
+13. [Co víte o rekurzi a backtracingu?](./Teorie/13_RekurzeBacktrecking.md)
+14. [Sorting - co to je, jejich dělení podle typu dat, BogoSort, zajíci a želvy](./Teorie/14_Sorting-BogoSort.md)
+15. [Popište princip ShakerSortu a HeapSortu](./Teorie/15_ShakerSort-HeapSort.md)
+16. [Popište princip SelectSortu a BubbleSortu](./Teorie/16_SelectSort-BubbleSort.md)
+17. [Popište princip InsertSortu a QuickSortu](./Teorie/17_InsertSort-QuickSort.md)
+18. [Popište princip MergeSortu a CombSortu ](./Teorie/18_MergeSort-CombSort.md)
+19. [Popište princip ShellSortu a CountingSortu](./Teorie/19_ShellSort-CountingSort.md)
+20. [Vyhledávání, oč jde, zákl. pojmy, rozdíl mezi lieárním a binárním vyhledáváním](./Teorie/20_Searching.md)
+21. [Binární a interpolační vyhledávání](./Teorie/21_BinarniInterpolacniVyhledavani.md)
+22. [Binární vyhledávací stromy - vlastnosti, metody procházení, vkládání a odstranění prvku](./Teorie/22_BVS.md)
+23. [Vyvažování stromů - co to je, proč to je, co je bal a rotace](./Teorie/23_VyvazovaniStromu-AVL.md)
+24. [Hashování - základní terminologie, princip, asociativní a adresní vyhledávání, hašovací funkce + kolize](./Teorie/24_Hashovani.md)
+25. [Zřetězené hashování, otevřené hashování, linear probing, double hashing - principy, výhody/nevýhody atd.](./Teorie/25_ZretezeneHashovani.md)
+26. [Prohledávání řetězců - terminologie, princip, přirozené prohledávání, KMP, chybová funkce](./Teorie/26_ProhledavaniRetezcu-KMP.md)
+27. [Prohledávání řetězců - Boyer-Moore, Rabin-Karp - princip, srovnání](./Teorie/27_ProhledavaniRetezcu-BM-RK.md)
